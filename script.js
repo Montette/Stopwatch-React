@@ -138,6 +138,15 @@ class Theme extends React.Component {
 
 
 class Nav extends React.Component {
+    
+    propTypes: {
+        onStart: PropTypes.func.isRequired,
+        onStop: PropTypes.func.isRequired,
+        onReset: PropTypes.func.isRequired,
+        onList: PropTypes.func.isRequired,
+        onResetList: PropTypes.func.isRequired
+    }
+
    render(){
         return(
        <nav className='controls'>
@@ -154,6 +163,12 @@ class Nav extends React.Component {
 
 
 class Button extends React.Component {
+  
+ propTypes: {
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  }
+
  render() {
     const butClass = this.props.label
     return (
