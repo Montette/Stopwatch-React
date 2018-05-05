@@ -116,9 +116,9 @@ class Theme extends React.Component {
         return (
             <form>
                 <input id="stylesheet1" type="radio" defaultChecked name="theme" value="dark.css" onClick={this.swap.bind(this)} />
-                <label for="stylesheet1">Dark theme</label>
+                <label htmlFor="stylesheet1">Dark theme</label>
                 <input id="stylesheet2" type="radio" name="theme" value="light.css" onClick={this.swap.bind(this)} />
-                <label for="stylesheet2">Light theme</label>
+                <label htmlFor="stylesheet2">Light theme</label>
             </form>
         )
     }
