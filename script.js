@@ -1,7 +1,6 @@
 class Stopwatch extends React.Component {
     constructor() {
         super()
-
         this.state = {
             running: false,
             stylePath: 'dark.css',
@@ -22,19 +21,16 @@ class Stopwatch extends React.Component {
             }
        })
     }
-    
     pad0(value) {
-    let result = value.toString();
-    if (result.length < 2) {
-        result = '0' + result;
+        let result = value.toString();
+        if (result.length < 2) {
+            result = '0' + result;
+        }
+        return result;
     }
-    return result;
-   }
-    
     format(times) {
         return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(Math.floor(times.miliseconds))}`;
     }
-    
     start() {
         if (!this.state.running) {
             this.setState({
@@ -43,7 +39,6 @@ class Stopwatch extends React.Component {
             });
         }
     }
-    
     step() {
         let minutes = this.state.times.minutes;
         let seconds = this.state.times.seconds;
@@ -58,7 +53,6 @@ class Stopwatch extends React.Component {
             minutes++;
             seconds = 0;
         }
-
         this.setState({
             times: {
                 miliseconds,
@@ -67,31 +61,26 @@ class Stopwatch extends React.Component {
             }
         });
     }
-    
     stop() {
         clearInterval(this.state.watch);
         this.setState({
             running: false
         });
     }
-    
     writeList(){
         let result = document.querySelector('.results');
         let resultEl = document.createElement('li');
         result.appendChild(resultEl);
         resultEl.innerHTML = `${this.format(this.state.times)}`
-   }
-    
+    }
     resetList() {
         document.querySelector('.results').innerHTML = '';
     }
-    
-     swapStyleSheet(sheet) {
+    swapStyleSheet(sheet) {
         this.setState({
             stylePath: sheet
         })
     }
-    
     render(){
         return (
             <div>
@@ -119,11 +108,11 @@ class Stopwatch extends React.Component {
 
 
 class Theme extends React.Component {
-      swap(event) {
-           var sheet = event.target.value;
-           this.props.onClick(sheet)
-        }
-   render(){
+    swap(event) {
+        var sheet = event.target.value;
+        this.props.onClick(sheet)
+    }
+    render(){
         return (
             <form>
                 <input id="stylesheet1" type="radio" defaultChecked name="theme" value="dark.css" onClick={this.swap.bind(this)} />
@@ -138,7 +127,6 @@ class Theme extends React.Component {
 
 
 class Nav extends React.Component {
-    
     propTypes: {
         onStart: PropTypes.func.isRequired,
         onStop: PropTypes.func.isRequired,
@@ -146,16 +134,15 @@ class Nav extends React.Component {
         onList: PropTypes.func.isRequired,
         onResetList: PropTypes.func.isRequired
     }
-
-   render(){
+    render(){
         return(
-       <nav className='controls'>
-            <Button label="start" name="Start" onClick={this.props.onStart} />
-            <Button label="stop"  name="Stop" onClick={this.props.onStop} />
-            <Button label="reset" name="Reset" onClick={this.props.onReset} />
-            <Button label="save"  name="Save result" onClick={this.props.onList} />
-            <Button label="resetList" name="Reset results" onClick={this.props.onResetList} />       
-       </nav>    
+           <nav className='controls'>
+                <Button label="start" name="Start" onClick={this.props.onStart} />
+                <Button label="stop"  name="Stop" onClick={this.props.onStop} />
+                <Button label="reset" name="Reset" onClick={this.props.onReset} />
+                <Button label="save"  name="Save result" onClick={this.props.onList} />
+                <Button label="resetList" name="Reset results" onClick={this.props.onResetList} />       
+           </nav>    
       )
    }
 }
@@ -163,25 +150,22 @@ class Nav extends React.Component {
 
 
 class Button extends React.Component {
-  
- propTypes: {
+    propTypes: {
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
-  }
-
- render() {
-    const butClass = this.props.label
-    return (
-       <a
-         id={this.props.label}
-          label={this.props.label}
-          href="#"
-          className={[butClass, "button"].join(' ')}
-          onClick={this.props.onClick}>
-          {this.props.name}
-        </a>
-    )
-  }
+    onClick: PropTypes.func.isRequired,
+    }
+    render() {
+        return (
+           <a
+             id={this.props.label}
+              label={this.props.label}
+              href="#"
+              className={[this.props.label, "button"].join(' ')}
+              onClick={this.props.onClick}>
+              {this.props.name}
+            </a>
+        )
+    }
 }
 
 
