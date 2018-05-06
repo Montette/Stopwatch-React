@@ -4,6 +4,7 @@ class Stopwatch extends React.Component {
         this.state = {
             running: false,
             stylePath: 'dark.css',
+            results: [],
             times: {
                 minutes: 0,
                 seconds: 0,
@@ -68,13 +69,17 @@ class Stopwatch extends React.Component {
         });
     }
     writeList(){
-        let result = document.querySelector('.results');
-        let resultEl = document.createElement('li');
-        result.appendChild(resultEl);
-        resultEl.innerHTML = `${this.format(this.state.times)}`
+//        let result = document.querySelector('.results');
+//        let resultEl = document.createElement('li');
+//        result.appendChild(resultEl);
+//        resultEl.innerHTML = `${this.format(this.state.times)}`
+         const results = this.state.results.slice();
+        results.push(this.format(this.state.times));
+        this.setState({results: results})
     }
     resetList() {
-        document.querySelector('.results').innerHTML = '';
+//        document.querySelector('.results').innerHTML = '';
+        this.setState({results: []});
     }
     swapStyleSheet(sheet) {
         this.setState({
@@ -98,7 +103,10 @@ class Stopwatch extends React.Component {
                             onResetList={this.resetList.bind(this)}
                         />
                    </div>
-                    <ul className="results"></ul>
+                    <ul className="results">
+                        {this.state.results.map((result, index) => <li key={index}>{result}</li>)}  
+                        
+                    </ul>
                 </div>  
             </div>
        )
