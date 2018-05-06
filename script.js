@@ -69,16 +69,11 @@ class Stopwatch extends React.Component {
         });
     }
     writeList(){
-//        let result = document.querySelector('.results');
-//        let resultEl = document.createElement('li');
-//        result.appendChild(resultEl);
-//        resultEl.innerHTML = `${this.format(this.state.times)}`
          const results = this.state.results.slice();
         results.push(this.format(this.state.times));
         this.setState({results: results})
     }
     resetList() {
-//        document.querySelector('.results').innerHTML = '';
         this.setState({results: []});
     }
     swapStyleSheet(sheet) {
@@ -105,8 +100,7 @@ class Stopwatch extends React.Component {
                    </div>
                     <ul className="results">
                         {this.state.results.map((result, index) => <li key={index}>{result}</li>)}  
-                        
-                    </ul>
+                   </ul>
                 </div>  
             </div>
        )
